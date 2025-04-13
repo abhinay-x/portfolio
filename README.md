@@ -2,7 +2,7 @@
 
 A professional single-page application showcasing my frontend development expertise and certifications. Built with React Vite and Tailwind CSS, this portfolio highlights my skills in React, JavaScript, HTML, CSS, and Java, tailored for Web Development Intern roles and future Software Engineer positions.
 
-🌐 **Live Demo**: [portfolio-abhinay-x.vercel.app](https://portfolio-abhinay-x.vercel.app)  
+🌐 **Live Demo**: [portfolio-abhinay-x.vercel.app](https://abhinay-chary-portfolio.vercel.app/)  
 📂 **GitHub**: [github.com/abhinay-x/portfolio](https://github.com/abhinay-x/portfolio)
 
 ## Features
