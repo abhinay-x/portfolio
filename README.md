@@ -1,4 +1,7 @@
-# Abhinay Chary - Portfolio
+
+Hi, I'm Abhinay!  
+🌐 [Portfolio](https://abhinay-chary-portfolio.vercel.app)  
+💻 Frontend Dev | React, Java (NPTEL), JavaScript
 
 A professional single-page application showcasing my frontend development expertise and certifications. Built with React Vite and Tailwind CSS, this portfolio highlights my skills in React, JavaScript, HTML, CSS, and Java, tailored for Web Development Intern roles and future Software Engineer positions.
 
