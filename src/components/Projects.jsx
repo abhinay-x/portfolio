@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-const Projects = ({ darkMode }) => {
+const Projects = () => {
   const [filter, setFilter] = useState('all');
 
   const projects = [
@@ -89,7 +89,7 @@ const Projects = ({ darkMode }) => {
   };
 
   return (
-    <div className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <div className="py-20 bg-white dark:bg-gray-900">
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial="hidden"
@@ -102,10 +102,10 @@ const Projects = ({ darkMode }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             Projects
           </h2>
-          <p className={`mt-4 text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Explore my latest work
           </p>
         </motion.div>
@@ -116,13 +116,7 @@ const Projects = ({ darkMode }) => {
             <button
               key={tech}
               onClick={() => setFilter(tech)}
-              className={`px-4 py-2 rounded-full transition-colors ${
-                filter === tech
-                  ? 'bg-blue-500 text-white'
-                  : darkMode
-                    ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
+              className={`px-4 py-2 rounded-full transition-colors ${filter === tech ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'}`}
             >
               {tech.charAt(0).toUpperCase() + tech.slice(1)}
             </button>
@@ -140,21 +134,19 @@ const Projects = ({ darkMode }) => {
               <motion.div
                 key={project.title}
                 variants={projectVariants}
-                className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+                className="p-6 rounded-lg shadow-lg bg-white dark:bg-gray-800"
               >
-                <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
                   {project.title}
                 </h3>
-                <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <p className="mb-4 text-gray-600 dark:text-gray-300">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className={`px-3 py-1 text-sm rounded-full ${
-                        darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'
-                      }`}
+                      className="px-3 py-1 text-sm rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                     >
                       {tech}
                     </span>

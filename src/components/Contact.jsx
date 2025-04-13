@@ -1,15 +1,23 @@
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
-const Contact = ({ darkMode }) => {
+const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, we'd handle form submission here
-    alert('Thanks for reaching out! This is a demo form.');
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    
+    // Create mailto link with form data
+    const subject = `Portfolio Contact: ${data.name}`;
+    const body = `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`;
+    const mailtoLink = `mailto:r.abhinaychary@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
   };
 
   return (
-    <div className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+    <div className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -45,7 +53,7 @@ const Contact = ({ darkMode }) => {
                     href="https://linkedin.com/in/abhinay-chary"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     <FaLinkedin className="text-xl" />
                     <span>LinkedIn</span>
@@ -54,7 +62,7 @@ const Contact = ({ darkMode }) => {
                     href="https://github.com/abhinay-x"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     <FaGithub className="text-xl" />
                     <span>GitHub</span>
@@ -63,7 +71,7 @@ const Contact = ({ darkMode }) => {
                     href="https://x.com/abhinay_1212"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     <FaXTwitter className="text-xl" />
                     <span>X (Twitter)</span>
@@ -72,7 +80,7 @@ const Contact = ({ darkMode }) => {
                     href="https://instagram.com/abhinaychary_raghipani"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full transition-colors bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700"
                   >
                     <FaInstagram className="text-xl" />
                     <span>Instagram</span>
@@ -135,7 +143,7 @@ const Contact = ({ darkMode }) => {
               </div>
               <button
                 type="submit"
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${darkMode ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+                className="w-full py-3 px-6 rounded-lg font-medium transition-colors bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600"
               >
                 Send Message
               </button>

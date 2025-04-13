@@ -13,34 +13,46 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true);
+    // Check system preference and localStorage
+    const isDark = localStorage.getItem('darkMode') === 'true' ||
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
     }
   }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode(prev => {
+      const newDarkMode = !prev;
+      localStorage.setItem('darkMode', newDarkMode);
+      if (newDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return newDarkMode;
+    });
   };
 
   return (
     <Router>
-      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
-        <Navbar darkMode={darkMode} />
+      <div className="min-h-screen bg-white dark:bg-gray-900">
+        <Navbar />
         <Routes>
           <Route path="/" element={
             <>
-              <Hero darkMode={darkMode} />
-              <Skills darkMode={darkMode} />
+              <Hero />
+              <Skills />
             </>
           } />
-          <Route path="/about" element={<About darkMode={darkMode} />} />
-          <Route path="/projects" element={<Projects darkMode={darkMode} />} />
-          <Route path="/certifications" element={<Certifications darkMode={darkMode} />} />
-          <Route path="/contact" element={<Contact darkMode={darkMode} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-        <Footer darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <Footer toggleDarkMode={toggleDarkMode} />
       </div>
     </Router>
   );

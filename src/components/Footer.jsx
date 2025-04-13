@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
-const Footer = ({ darkMode, toggleDarkMode }) => {
+const Footer = ({ toggleDarkMode }) => {
   const quickLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -14,12 +14,12 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
   ];
 
   return (
-    <footer className={`w-full py-8 ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+    <footer className="w-full py-8 bg-gray-100 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Quick Links */}
           <div className="mb-6 md:mb-0">
-            <h3 className={`text-lg font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+            <h3 className="text-lg font-semibold mb-3 text-gray-800 dark:text-white">
               Quick Links
             </h3>
             <ul className="flex flex-wrap gap-4">
@@ -27,9 +27,7 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className={`hover:text-blue-500 transition-colors ${
-                      darkMode ? 'text-gray-300' : 'text-gray-600'
-                    }`}
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -44,9 +42,7 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
               href="https://github.com/abhinay-x"
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-2xl hover:text-blue-500 transition-colors ${
-                darkMode ? 'text-white' : 'text-gray-800'
-              }`}
+              className="text-2xl text-gray-800 dark:text-white hover:text-blue-500 transition-colors"
               aria-label="GitHub Profile"
             >
               <FaGithub />
@@ -55,9 +51,7 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
               href="https://linkedin.com/in/abhinay-chary"
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-2xl hover:text-blue-500 transition-colors ${
-                darkMode ? 'text-white' : 'text-gray-800'
-              }`}
+              className="text-2xl text-gray-800 dark:text-white hover:text-blue-500 transition-colors"
               aria-label="LinkedIn Profile"
             >
               <FaLinkedin />
@@ -66,9 +60,7 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
               href="https://x.com/abhinay_1212"
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-2xl hover:text-blue-500 transition-colors ${
-                darkMode ? 'text-white' : 'text-gray-800'
-              }`}
+              className="text-2xl text-gray-800 dark:text-white hover:text-blue-500 transition-colors"
               aria-label="X (Twitter) Profile"
             >
               <FaXTwitter />
@@ -77,27 +69,24 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
               href="https://instagram.com/abhinaychary_raghipani"
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-2xl hover:text-blue-500 transition-colors ${
-                darkMode ? 'text-white' : 'text-gray-800'
-              }`}
+              className="text-2xl text-gray-800 dark:text-white hover:text-blue-500 transition-colors"
               aria-label="Instagram Profile"
             >
               <FaInstagram />
             </a>
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-full hover:bg-opacity-10 hover:bg-blue-500 transition-colors ${
-                darkMode ? 'text-white' : 'text-gray-800'
-              }`}
+              className="p-2 rounded-full text-gray-800 dark:text-white hover:bg-blue-500 hover:bg-opacity-10 transition-colors"
               aria-label="Toggle Dark Mode"
             >
-              {darkMode ? <MdLightMode className="text-2xl" /> : <MdDarkMode className="text-2xl" />}
+              <MdDarkMode className="text-2xl dark:hidden" />
+              <MdLightMode className="text-2xl hidden dark:block" />
             </button>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className={`text-center mt-8 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+        <div className="text-center mt-8 text-gray-600 dark:text-gray-400">
           <p>&copy; 2025 Abhinay Chary. All rights reserved.</p>
         </div>
       </div>
