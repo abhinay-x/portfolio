@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-const Projects = () => {
+const Projects = ({ darkMode }) => {
+  const [filter, setFilter] = useState('all');
+
   const projects = [
     {
       title: 'WoodWorks Hub',
@@ -14,7 +17,7 @@ const Projects = () => {
         'Targeted at skilled carpenters'
       ],
       domain: 'Sustainable Development / Digital Empowerment',
-      github: 'https://github.com/abhinay-chary/woodworks-hub',
+      github: 'https://github.com/abhinay-x/woodworks-hub',
       live: '#'
     },
     {
@@ -29,7 +32,7 @@ const Projects = () => {
         'Login/signup with history tracking'
       ],
       domain: 'Sustainability & Food Waste Management',
-      github: 'https://github.com/abhinay-chary/feed-forward',
+      github: 'https://github.com/abhinay-x/feed-forward',
       live: '#'
     },
     {
@@ -44,7 +47,7 @@ const Projects = () => {
         'Real-time booking system'
       ],
       domain: 'Service-based startup prototype',
-      github: 'https://github.com/abhinay-chary/craft-connect',
+      github: 'https://github.com/abhinay-x/craft-connect',
       live: '#'
     },
     {
@@ -58,7 +61,7 @@ const Projects = () => {
         'Performance analysis'
       ],
       domain: 'Data Structures & Algorithms',
-      github: 'https://github.com/abhinay-chary/array-solver',
+      github: 'https://github.com/abhinay-x/array-solver',
       live: '#'
     }
   ];
@@ -86,7 +89,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="py-20 bg-white dark:bg-gray-900">
+    <div className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial="hidden"
@@ -94,96 +97,91 @@ const Projects = () => {
         variants={containerVariants}
       >
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Projects
           </h2>
-          <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
-            Here are some of my recent projects showcasing my full-stack development skills.
+          <p className={`mt-4 text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            Explore my latest work
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              variants={projectVariants}
-              className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {['all', 'React', 'Java', 'MERN', 'Data Structures'].map((tech) => (
+            <button
+              key={tech}
+              onClick={() => setFilter(tech)}
+              className={`px-4 py-2 rounded-full transition-colors ${
+                filter === tech
+                  ? 'bg-blue-500 text-white'
+                  : darkMode
+                    ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
             >
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {project.title}
-                  </h3>
-                  <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-sm">
-                    {project.domain}
-                  </span>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {tech.charAt(0).toUpperCase() + tech.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects
+            .filter(project => 
+              filter === 'all' ? true : project.tech.some(t => 
+                t.toLowerCase().includes(filter.toLowerCase())
+              )
+            )
+            .map((project, index) => (
+              <motion.div
+                key={project.title}
+                variants={projectVariants}
+                className={`p-6 rounded-lg shadow-lg ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+              >
+                <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  {project.title}
+                </h3>
+                <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   {project.description}
                 </p>
-                
-                <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    Technologies
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className={`px-3 py-1 text-sm rounded-full ${
+                        darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    Key Features
-                  </h4>
-                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
-                    {project.features.map((feature) => (
-                      <li key={feature} className="text-sm">
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex gap-4">
-                  <motion.a
+                <div className="flex gap-4 mt-auto">
+                  <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white rounded hover:bg-gray-800 dark:hover:bg-gray-600 transition duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="text-blue-500 hover:text-blue-600 transition-colors"
                   >
                     GitHub
-                  </motion.a>
-                  <motion.a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 transition duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Live Demo
-                  </motion.a>
+                  </a>
+                  {project.live !== '#' && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-600 transition-colors"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
         </div>
       </motion.div>
     </div>

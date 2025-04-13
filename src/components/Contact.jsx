@@ -1,4 +1,7 @@
-const Contact = () => {
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+
+const Contact = ({ darkMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // In a real app, we'd handle form submission here
@@ -6,7 +9,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="py-20 bg-gray-50 dark:bg-gray-800">
+    <div className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -34,25 +37,45 @@ const Contact = () => {
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Professional Profiles
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+                  Connect With Me
                 </h4>
-                <div className="space-y-4">
+                <div className="flex flex-wrap gap-4">
                   <a
                     href="https://linkedin.com/in/abhinay-chary"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-500"
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
                   >
-                    LinkedIn
+                    <FaLinkedin className="text-xl" />
+                    <span>LinkedIn</span>
                   </a>
                   <a
-                    href="https://github.com/abhinay-chary"
+                    href="https://github.com/abhinay-x"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-500"
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
                   >
-                    GitHub
+                    <FaGithub className="text-xl" />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href="https://x.com/abhinay_1212"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
+                  >
+                    <FaXTwitter className="text-xl" />
+                    <span>X (Twitter)</span>
+                  </a>
+                  <a
+                    href="https://instagram.com/abhinaychary_raghipani"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-200 text-gray-900 hover:bg-gray-300'}`}
+                  >
+                    <FaInstagram className="text-xl" />
+                    <span>Instagram</span>
                   </a>
                 </div>
               </div>
@@ -107,12 +130,12 @@ const Contact = () => {
                   name="message"
                   rows="4"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white resize-none"
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition duration-300"
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${darkMode ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
               >
                 Send Message
               </button>
